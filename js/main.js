@@ -51,11 +51,13 @@ var tictactoe = (function () {
         if (winner === 'X') {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
-                    'src="/images/cat-head-gray.jpg"> won!');
+                 'src="https://raw.githubusercontent.com/davidroberson3/' +
+                 'tic-tac-toe-game/master/images/cat-head-gray.jpg"> won!');
         } else if (winner === 'O') {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
-                    'src="/images/cat-head-orange.jpg"> won!');
+                 'src="https://raw.githubusercontent.com/davidroberson3/' +
+                 'tic-tac-toe-game/master/images/cat-head-orange.jpg"> won!');
         }
     };
 
@@ -238,12 +240,14 @@ var tictactoe = (function () {
                     currentCell.classList.add(move);
                     currentCell.innerHTML =
                         ('<img class="cat-head" ' +
-                            'src="/images/cat-head-gray.jpg">');
+                         'src="https://raw.githubusercontent.com/davidroberson3/' +
+                         'tic-tac-toe-game/master/images/cat-head-gray.jpg">');
                 } else if (move === 'O') {
                     currentCell.classList.add(move);
                     currentCell.innerHTML =
                         ('<img class="cat-head" ' +
-                            'src="/images/cat-head-orange.jpg">');
+                         'src="https://raw.githubusercontent.com/davidroberson3/' +
+                         'tic-tac-toe-game/master/images/cat-head-orange.jpg">');
                 }
             }
         }
