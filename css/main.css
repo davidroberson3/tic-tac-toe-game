@@ -1,0 +1,132 @@
+body {
+    font-size: 10pt;
+    font-family: Verdana, sans-serif;
+    text-align: center;
+    vertical-align: center;
+}
+
+h1 {
+    font-size: 26pt;
+    font-family: Verdana, sans-serif;
+}
+
+p {
+    font-size: 30pt;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+/**/
+
+#win-status {
+    font-size: 30pt;
+}
+
+.cat-win {
+    max-height: 150px;
+    vertical-align: middle;
+}
+
+
+/**/
+
+#tictactoe-game-board {
+    margin: 0 auto;
+    height: auto;
+    width: auto;
+}
+
+.tictactoe-row {
+    display: block;
+    margin: 0 auto;
+    height: 100px;
+    width: 300px;
+}
+
+.tictactoe-cell {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    height: 100%;
+    width: 32%;
+    background-color: white;
+}
+
+.X {}
+
+.O {}
+
+.cat-head {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+
+/*top row*/
+
+#cell0-0 {
+/*
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+*/
+}
+
+#cell0-1 {
+/*    border-top: 1px solid black;*/
+    border-left: 1px solid black;
+}
+
+#cell0-2 {
+/*    border-top: 1px solid black;*/
+    border-left: 1px solid black;
+/*    border-right: 1px solid black;*/
+}
+
+
+/*middle row*/
+
+#cell1-0 {
+    border-top: 1px solid black;
+/*    border-left: 1px solid black;*/
+}
+
+#cell1-1 {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+
+#cell1-2 {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+/*    border-right: 1px solid black;*/
+}
+
+
+/*bottom row*/
+
+#cell2-0 {
+    border-top: 1px solid black;
+/*    border-left: 1px solid black;*/
+/*    border-bottom: 1px solid black;*/
+}
+
+#cell2-1 {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+/*    border-bottom: 1px solid black;*/
+}
+
+#cell2-2 {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+/*    border-bottom: 1px solid black;*/
+/*    border-right: 1px solid black;*/
+}
