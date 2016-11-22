@@ -24,7 +24,16 @@ p {
     user-select: none;
 }
 
+
 /**/
+
+#reset-button {
+    background-color: black;
+    color: white;
+    border-radius: 0;
+    height: 30px;
+    width: 80px;
+}
 
 #win-status {
     font-size: 30pt;
@@ -60,6 +69,10 @@ p {
     background-color: white;
 }
 
+.tictactoe-cell:active {
+    background-color: #ddd;
+}
+
 .X {}
 
 .O {}
@@ -73,21 +86,21 @@ p {
 /*top row*/
 
 #cell0-0 {
-/*
+    /*
     border-top: 1px solid black;
     border-left: 1px solid black;
 */
 }
 
 #cell0-1 {
-/*    border-top: 1px solid black;*/
+    /*    border-top: 1px solid black;*/
     border-left: 1px solid black;
 }
 
 #cell0-2 {
-/*    border-top: 1px solid black;*/
+    /*    border-top: 1px solid black;*/
     border-left: 1px solid black;
-/*    border-right: 1px solid black;*/
+    /*    border-right: 1px solid black;*/
 }
 
 
@@ -95,7 +108,7 @@ p {
 
 #cell1-0 {
     border-top: 1px solid black;
-/*    border-left: 1px solid black;*/
+    /*    border-left: 1px solid black;*/
 }
 
 #cell1-1 {
@@ -106,7 +119,7 @@ p {
 #cell1-2 {
     border-top: 1px solid black;
     border-left: 1px solid black;
-/*    border-right: 1px solid black;*/
+    /*    border-right: 1px solid black;*/
 }
 
 
@@ -114,19 +127,19 @@ p {
 
 #cell2-0 {
     border-top: 1px solid black;
-/*    border-left: 1px solid black;*/
-/*    border-bottom: 1px solid black;*/
+    /*    border-left: 1px solid black;*/
+    /*    border-bottom: 1px solid black;*/
 }
 
 #cell2-1 {
     border-top: 1px solid black;
     border-left: 1px solid black;
-/*    border-bottom: 1px solid black;*/
+    /*    border-bottom: 1px solid black;*/
 }
 
 #cell2-2 {
     border-top: 1px solid black;
     border-left: 1px solid black;
-/*    border-bottom: 1px solid black;*/
-/*    border-right: 1px solid black;*/
+    /*    border-bottom: 1px solid black;*/
+    /*    border-right: 1px solid black;*/
 }
