@@ -37,10 +37,12 @@ p {
 
 #win-status {
     font-size: 30pt;
+    white-space: nowrap;
 }
 
 .cat-win {
-    max-height: 150px;
+    height: 150px;
+    width: 150px;
     vertical-align: middle;
 }
 
@@ -48,9 +50,9 @@ p {
 /**/
 
 #tictactoe-game-board {
-    margin: 0 auto;
+    margin: 30px auto;
     height: auto;
-    width: auto;
+    width: 500px;
 }
 
 .tictactoe-row {
@@ -58,14 +60,16 @@ p {
     margin: 0 auto;
     height: 100px;
     width: 300px;
+    vertical-align: middle;
 }
 
 .tictactoe-cell {
     display: inline-block;
-    vertical-align: middle;
     margin: 0;
-    height: 100%;
-    width: 32%;
+    height: 98px;
+    width: 98px;
+    line-height: 95px;
+    vertical-align: middle;
     background-color: white;
 }
 
@@ -78,29 +82,33 @@ p {
 .O {}
 
 .cat-head {
-    max-height: 100px;
-    max-width: 100px;
+    height: 98px;
+    width: 98px;
+    vertical-align: middle;
 }
 
 
 /*top row*/
 
 #cell0-0 {
-    /*
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-*/
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
 
 #cell0-1 {
-    /*    border-top: 1px solid black;*/
+    border-top: 1px solid white;
     border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
 
 #cell0-2 {
-    /*    border-top: 1px solid black;*/
+    border-top: 1px solid white;
     border-left: 1px solid black;
-    /*    border-right: 1px solid black;*/
+    border-bottom: 1px solid black;
+    border-right: 1px solid white;
 }
 
 
@@ -108,18 +116,23 @@ p {
 
 #cell1-0 {
     border-top: 1px solid black;
-    /*    border-left: 1px solid black;*/
+    border-left: 1px solid white;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
 
 #cell1-1 {
     border-top: 1px solid black;
     border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
 
 #cell1-2 {
     border-top: 1px solid black;
     border-left: 1px solid black;
-    /*    border-right: 1px solid black;*/
+    border-bottom: 1px solid black;
+    border-right: 1px solid white;
 }
 
 
@@ -127,19 +140,21 @@ p {
 
 #cell2-0 {
     border-top: 1px solid black;
-    /*    border-left: 1px solid black;*/
-    /*    border-bottom: 1px solid black;*/
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid black;
 }
 
 #cell2-1 {
     border-top: 1px solid black;
     border-left: 1px solid black;
-    /*    border-bottom: 1px solid black;*/
+    border-bottom: 1px solid white;
+    border-right: 1px solid black;
 }
 
 #cell2-2 {
     border-top: 1px solid black;
     border-left: 1px solid black;
-    /*    border-bottom: 1px solid black;*/
-    /*    border-right: 1px solid black;*/
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
 }
