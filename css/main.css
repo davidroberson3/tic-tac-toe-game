@@ -68,7 +68,7 @@ p {
     margin: 0;
     height: 98px;
     width: 98px;
-    line-height: 95px;
+    line-height: 97px;
     vertical-align: middle;
     background-color: white;
 }
@@ -82,9 +82,14 @@ p {
 .O {}
 
 .cat-head {
-    height: 98px;
-    width: 98px;
+    height: 80px;
+    width: 80px;
     vertical-align: middle;
+}
+
+.cat-head-win {
+    border: 6px solid lightgreen;
+    border-radius: 50%;
 }
 
 

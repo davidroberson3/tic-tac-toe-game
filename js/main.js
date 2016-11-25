@@ -1,4 +1,6 @@
 // http://www.theodinproject.com/courses/javascript-and-jquery/lessons/tic-tac-toe
+// Future idea: structure gameBoardState to be an object with keys as cell ids,
+// and values as X/Os
 'use strict';
 
 
@@ -26,7 +28,8 @@ var tictactoe = (function () {
 
         var cellCoords = this.id.replace('cell', '').split('-');
 
-        var winner = checkWinCondition();
+        var winCheckResult = checkWinCondition();
+        var winner = winCheckResult[0];
 
         var isCellAvailable = (
             gameBoardState[cellCoords[0]][cellCoords[1]] !== 'X' &&
@@ -46,18 +49,20 @@ var tictactoe = (function () {
         }
 
         // if someone won, this displays the winner
-        winner = checkWinCondition();
-
         if (winner === 'X') {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
                     'src="https://raw.githubusercontent.com/davidroberson3/' +
-                    'tic-tac-toe-game/master/images/cat-head-gray.jpg"> won!');
+                    'tic-tac-toe-game/master/images/cat-head-gray.jpg"> wins!');
+            renderWinCircles(winCheckResult);
+            return;
         } else if (winner === 'O') {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
                     'src="https://raw.githubusercontent.com/davidroberson3/' +
-                    'tic-tac-toe-game/master/images/cat-head-orange.jpg"> won!');
+                    'tic-tac-toe-game/master/images/cat-head-orange.jpg"> wins!');
+            renderWinCircles(winCheckResult);
+            return;
         }
 
         // if game is a draw, then display message
@@ -73,14 +78,13 @@ var tictactoe = (function () {
         if (isBoardFull) {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
-                 'src="https://raw.githubusercontent.com/davidroberson3/' +
-                 'tic-tac-toe-game/master/images/cat-head-gray.jpg">' +
-                 ' Cat\'s game! ' +
-                 '<img class="cat-win" ' +
-                 'src="https://raw.githubusercontent.com/davidroberson3/' +
-                 'tic-tac-toe-game/master/images/cat-head-orange.jpg">');
+                    'src="https://raw.githubusercontent.com/davidroberson3/' +
+                    'tic-tac-toe-game/master/images/cat-head-gray.jpg">' +
+                    ' Cat\'s game! ' +
+                    '<img class="cat-win" ' +
+                    'src="https://raw.githubusercontent.com/davidroberson3/' +
+                    'tic-tac-toe-game/master/images/cat-head-orange.jpg">');
         }
-
     };
 
 
@@ -99,6 +103,7 @@ var tictactoe = (function () {
                 var currentCell = document.getElementById('cell' + i + '-' + j);
                 currentCell.classList.remove('X');
                 currentCell.classList.remove('O');
+                currentCell.classList.remove('cat-head-win');
                 currentCell.innerHTML = '';
             }
         }
@@ -143,7 +148,8 @@ var tictactoe = (function () {
 
     ///////////////////////////////////////////////////////////////////////////
     // Function that checks for win conditions,
-    // returns 'X', 'O', or false
+    // returns 'X', 'O', or false as first index
+    // returns winning sequence as second index (i.e. the winCheck index)
     var checkWinCondition = function () {
 
         // winCheck contains each row/column/diagonal
@@ -211,15 +217,76 @@ var tictactoe = (function () {
         // Check whether a win condition is met
         for (var i = 0; i < winCheck.length; i += 1) {
             if (winCheck[i] === 'XXX') {
-                return 'X';
+                return ['X', i];
             }
             if (winCheck[i] === 'OOO') {
-                return 'O';
+                return ['O', i];
             }
         }
 
         // default
-        return false;
+        return [false, -1];
+    };
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Function that draws circles over top of the winning moves
+    var renderWinCircles = function (winCheckResult) {
+        var winPlayer = winCheckResult[0];
+        // 'X', 'O'
+        var winIndex = winCheckResult[1];
+        // ['row0','row1','row2',
+        //  'col0','col1','col2',
+        //  'diag0','diag1']
+        var winningCells = [];
+
+        // row0, row1, or row2
+        if (winIndex < 3 && winIndex > -1) {
+            winningCells.push(document.getElementById(
+                'cell' + winIndex + '-' + 0));
+            winningCells.push(document.getElementById(
+                'cell' + winIndex + '-' + 1));
+            winningCells.push(document.getElementById(
+                'cell' + winIndex + '-' + 2));
+        }
+
+        // col0, col1, or col2
+        if (winIndex < 6 && winIndex > 2) {
+            winningCells.push(document.getElementById(
+                'cell' + 0 + '-' + (winIndex - 3)));
+            winningCells.push(document.getElementById(
+                'cell' + 1 + '-' + (winIndex - 3)));
+            winningCells.push(document.getElementById(
+                'cell' + 2 + '-' + (winIndex - 3)));
+        }
+
+        // diag0
+        if (winIndex === 6) {
+            winningCells.push(document.getElementById(
+                'cell' + 0 + '-' + 0));
+            winningCells.push(document.getElementById(
+                'cell' + 1 + '-' + 1));
+            winningCells.push(document.getElementById(
+                'cell' + 2 + '-' + 2));
+        }
+
+        // diag1
+        if (winIndex === 7) {
+            winningCells.push(document.getElementById(
+                'cell' + 0 + '-' + 2));
+            winningCells.push(document.getElementById(
+                'cell' + 1 + '-' + 1));
+            winningCells.push(document.getElementById(
+                'cell' + 2 + '-' + 0));
+        }
+
+        for (var j = 0; j < 3; j += 1) {
+            // each cell should only have one child node, which is the image
+            winningCells[j].childNodes[0].classList.add('cat-head-win');
+        }
     };
 
 
@@ -281,14 +348,16 @@ var tictactoe = (function () {
                     currentCell.classList.add(move);
                     currentCell.innerHTML =
                         ('<img class="cat-head" ' +
-                            'src="https://raw.githubusercontent.com/davidroberson3/' +
-                            'tic-tac-toe-game/master/images/cat-head-gray.jpg">');
+                            'src="https://raw.githubusercontent.com/' +
+                            'davidroberson3/tic-tac-toe-game/master' +
+                            '/images/cat-head-gray.jpg">');
                 } else if (move === 'O') {
                     currentCell.classList.add(move);
                     currentCell.innerHTML =
                         ('<img class="cat-head" ' +
-                            'src="https://raw.githubusercontent.com/davidroberson3/' +
-                            'tic-tac-toe-game/master/images/cat-head-orange.jpg">');
+                            'src="https://raw.githubusercontent.com/' +
+                            'davidroberson3/tic-tac-toe-game/master' +
+                            '/images/cat-head-orange.jpg">');
                 }
             }
         }
