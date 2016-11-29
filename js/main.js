@@ -26,9 +26,6 @@ var tictactoe = (function () {
         // then this updates the game board with current move
         var cellCoords = this.id.replace('cell', '').split('-');
 
-        var winCheckResult = checkWinCondition();
-        var winner = winCheckResult[0];
-
         var isCellAvailable = (
             gameBoardState[cellCoords[0]][cellCoords[1]] !== 'X' &&
             gameBoardState[cellCoords[0]][cellCoords[1]] !== 'O' &&
@@ -47,6 +44,9 @@ var tictactoe = (function () {
         }
 
         // if someone won, this displays the winner
+        var winCheckResult = checkWinCondition();
+        var winner = winCheckResult[0];
+
         if (winner === 'X') {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
@@ -66,6 +66,7 @@ var tictactoe = (function () {
 
         // if game is a draw, this displays a message
         var isBoardFull = true;
+
         for (var i = 0; i < gameBoardState.length; i += 1) {
             for (var j = 0; j < gameBoardState[i].length; j += 1) {
 
