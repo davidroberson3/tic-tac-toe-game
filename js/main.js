@@ -1,16 +1,15 @@
 // http://www.theodinproject.com/courses/javascript-and-jquery/lessons/tic-tac-toe
-// Future idea: structure gameBoardState to be an object with keys as cell ids,
-// and values as X/Os
 'use strict';
 
 
 
 var tictactoe = (function () {
 
-
-
     ///////////////////////////////////////////////////////////////////////////
     // Object that contains the game board state
+    // ...
+    // (idea? : structure gameBoardState to be an object with keys as cell ids,
+    // and values as X/Os)
     var gameBoardState = [['', '', ''],
                           ['', '', ''],
                           ['', '', '']];
@@ -25,7 +24,6 @@ var tictactoe = (function () {
 
         // if the clicked cell is available,
         // then this updates the game board with current move
-
         var cellCoords = this.id.replace('cell', '').split('-');
 
         var winCheckResult = checkWinCondition();
@@ -56,6 +54,7 @@ var tictactoe = (function () {
                     'tic-tac-toe-game/master/images/cat-head-gray.jpg"> wins!');
             renderWinCircles(winCheckResult);
             return;
+
         } else if (winner === 'O') {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
@@ -65,16 +64,18 @@ var tictactoe = (function () {
             return;
         }
 
-        // if game is a draw, then display message
+        // if game is a draw, this displays a message
         var isBoardFull = true;
         for (var i = 0; i < gameBoardState.length; i += 1) {
-            for (var j = 0; j < gameBoardState[0].length; j += 1) {
+            for (var j = 0; j < gameBoardState[i].length; j += 1) {
+
                 if (gameBoardState[i][j].length === 0) {
                     isBoardFull = false;
-                    console.log(isBoardFull);
                 }
+
             }
         }
+
         if (isBoardFull) {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
@@ -85,6 +86,7 @@ var tictactoe = (function () {
                     'src="https://raw.githubusercontent.com/davidroberson3/' +
                     'tic-tac-toe-game/master/images/cat-head-orange.jpg">');
         }
+
     };
 
 
@@ -94,10 +96,10 @@ var tictactoe = (function () {
     ///////////////////////////////////////////////////////////////////////////
     // Function that resets the game board state to empty
     var resetGameBoardState = function () {
+
         gameBoardState = [['', '', ''], ['', '', ''], ['', '', '']];
         currentPlayerTurn = 'X';
 
-        // resets classes of the game board html elements
         for (var i = 0; i < 3; i += 1) {
             for (var j = 0; j < 3; j += 1) {
                 var currentCell = document.getElementById('cell' + i + '-' + j);
@@ -113,8 +115,11 @@ var tictactoe = (function () {
                 'src="https://raw.githubusercontent.com/davidroberson3/' +
                 'tic-tac-toe-game/master/images/cat-head-gray.jpg">' +
                 '\'s turn');
+
         renderGame();
+
     };
+
 
 
 
@@ -125,6 +130,7 @@ var tictactoe = (function () {
     var currentPlayerTurn = 'X';
 
     var togglePlayerTurn = function () {
+
         if (currentPlayerTurn === 'X') {
             currentPlayerTurn = 'O';
             document.getElementById('win-status').innerHTML =
@@ -132,6 +138,7 @@ var tictactoe = (function () {
                     'src="https://raw.githubusercontent.com/davidroberson3/' +
                     'tic-tac-toe-game/master/images/cat-head-orange.jpg">' +
                     '\'s turn');
+
         } else {
             currentPlayerTurn = 'X';
             document.getElementById('win-status').innerHTML =
@@ -140,6 +147,7 @@ var tictactoe = (function () {
                     'tic-tac-toe-game/master/images/cat-head-gray.jpg">' +
                     '\'s turn');
         }
+
     };
 
 
@@ -152,19 +160,17 @@ var tictactoe = (function () {
     // returns winning sequence as second index (i.e. the winCheck index)
     var checkWinCondition = function () {
 
-        // winCheck contains each row/column/diagonal
-        var winCheck = ['', '', '',
-                        '', '', '',
-                        '', ''];
+        // winCheck contains moves of each row/column/diagonal position
         // ['row0','row1','row2',
         //  'col0','col1','col2',
         //  'diag0','diag1']
+        var winCheck = ['', '', '',
+                        '', '', '',
+                        '', ''];
 
-        // Check rows
+        // checks rows
         for (var i = 0; i < 3; i += 1) {
-            // check cells rowwise
             for (var j = 0; j < 3; j += 1) {
-                // for cells within each row
                 if (gameBoardState[i][j] === 'X') {
                     winCheck[i] += 'X';
                 } else if (gameBoardState[i][j] === 'O') {
@@ -175,11 +181,9 @@ var tictactoe = (function () {
             }
         }
 
-        // Check columns
+        // checks columns
         for (var i = 0; i < 3; i += 1) {
-            // check cells columnwise
             for (var j = 0; j < 3; j += 1) {
-                // for cells within each column
                 if (gameBoardState[j][i] === 'X') {
                     winCheck[i + 3] += 'X';
                 } else if (gameBoardState[j][i] === 'O') {
@@ -190,9 +194,8 @@ var tictactoe = (function () {
             }
         }
 
-        // Check diagonal 1
+        // checks first diagonal (i.e. from top left to bottom right)
         for (var i = 0; i < 3; i += 1) {
-            // from top left to bottom right
             if (gameBoardState[i][i] === 'X') {
                 winCheck[6] += 'X';
             } else if (gameBoardState[i][i] === 'O') {
@@ -202,9 +205,8 @@ var tictactoe = (function () {
             }
         }
 
-        // Check diagonal 2
+        // checks second diagonal (i.e. from top right to bottom left)
         for (var i = 0; i < 3; i += 1) {
-            // from top right to bottom left
             if (gameBoardState[i][2 - i] === 'X') {
                 winCheck[7] += 'X';
             } else if (gameBoardState[i][2 - i] === 'O') {
@@ -214,7 +216,7 @@ var tictactoe = (function () {
             }
         }
 
-        // Check whether a win condition is met
+        // checks whether a win condition has been met
         for (var i = 0; i < winCheck.length; i += 1) {
             if (winCheck[i] === 'XXX') {
                 return ['X', i];
@@ -224,8 +226,9 @@ var tictactoe = (function () {
             }
         }
 
-        // default
+        // default output
         return [false, -1];
+
     };
 
 
@@ -235,15 +238,18 @@ var tictactoe = (function () {
     ///////////////////////////////////////////////////////////////////////////
     // Function that draws circles over top of the winning moves
     var renderWinCircles = function (winCheckResult) {
-        var winPlayer = winCheckResult[0];
+
         // 'X', 'O'
-        var winIndex = winCheckResult[1];
+        var winPlayer = winCheckResult[0];
+
         // ['row0','row1','row2',
         //  'col0','col1','col2',
         //  'diag0','diag1']
+        var winIndex = winCheckResult[1];
+
         var winningCells = [];
 
-        // row0, row1, or row2
+        // checks if winning cells are in row0, row1, or row2
         if (winIndex < 3 && winIndex > -1) {
             winningCells.push(document.getElementById(
                 'cell' + winIndex + '-' + 0));
@@ -253,7 +259,7 @@ var tictactoe = (function () {
                 'cell' + winIndex + '-' + 2));
         }
 
-        // col0, col1, or col2
+        // checks if winning cells are in col0, col1, or col2
         if (winIndex < 6 && winIndex > 2) {
             winningCells.push(document.getElementById(
                 'cell' + 0 + '-' + (winIndex - 3)));
@@ -263,7 +269,8 @@ var tictactoe = (function () {
                 'cell' + 2 + '-' + (winIndex - 3)));
         }
 
-        // diag0
+        // checks if winning cells are in first diagonal
+        // (i.e. from top left to bottom right)
         if (winIndex === 6) {
             winningCells.push(document.getElementById(
                 'cell' + 0 + '-' + 0));
@@ -273,7 +280,8 @@ var tictactoe = (function () {
                 'cell' + 2 + '-' + 2));
         }
 
-        // diag1
+        // checks if winning cells are in second diagonal
+        // (i.e. from top right to bottom left)
         if (winIndex === 7) {
             winningCells.push(document.getElementById(
                 'cell' + 0 + '-' + 2));
@@ -283,10 +291,12 @@ var tictactoe = (function () {
                 'cell' + 2 + '-' + 0));
         }
 
+        // attaches cat-head-win class to the winning move positions
         for (var j = 0; j < 3; j += 1) {
-            // each cell should only have one child node, which is the image
+            // each cell should only have one child node (i.e. the image)
             winningCells[j].childNodes[0].classList.add('cat-head-win');
         }
+
     };
 
 
@@ -305,28 +315,32 @@ var tictactoe = (function () {
         var gameBoard = document.createElement('div');
         gameBoard.id = 'tictactoe-game-board';
 
-        for (var i = 0; i < 3; i += 1) {
-            var row = document.createElement('div');
-            row.className = 'tictactoe-row';
-            row.id = 'row' + i;
+        for (var rowIndex = 0; rowIndex < 3; rowIndex += 1) {
 
-            for (var j = 0; j < 3; j += 1) {
-                var cell = document.createElement('div');
-                cell.className = 'tictactoe-cell';
-                cell.id = 'cell' + i + '-' + j;
+            var currentRow = document.createElement('div');
+            currentRow.className = 'tictactoe-row';
+            currentRow.id = 'row' + rowIndex;
 
-                cell.addEventListener('click', moveHandler);
+            for (var cellIndex = 0; cellIndex < 3; cellIndex += 1) {
 
-                row.appendChild(cell);
+                var currentCell = document.createElement('div');
+                currentCell.className = 'tictactoe-cell';
+                currentCell.id = 'cell' + rowIndex + '-' + cellIndex;
+                currentCell.addEventListener('click', moveHandler);
+
+                currentRow.appendChild(currentCell);
             }
-            gameBoard.appendChild(row);
+
+            gameBoard.appendChild(currentRow);
         }
+
         document.getElementById('tictactoe-container').appendChild(gameBoard);
         document.getElementById('win-status').innerHTML =
             ('<img class="cat-win" ' +
                 'src="https://raw.githubusercontent.com/davidroberson3/' +
                 'tic-tac-toe-game/master/images/cat-head-gray.jpg">' +
                 '\'s turn');
+
     };
 
 
@@ -337,30 +351,32 @@ var tictactoe = (function () {
     // Function that renders the game board
     var renderGame = function () {
 
-        // changes classes of the game board html elements
         for (var i = 0; i < 3; i += 1) {
             for (var j = 0; j < 3; j += 1) {
 
                 var currentCell = document.getElementById('cell' + i + '-' + j);
-                var move = gameBoardState[i][j];
+                var moveOfCurrentBoardPosition = gameBoardState[i][j];
 
-                if (move === 'X') {
-                    currentCell.classList.add(move);
+                if (moveOfCurrentBoardPosition === 'X') {
+                    currentCell.classList.add('X');
                     currentCell.innerHTML =
                         ('<img class="cat-head" ' +
                             'src="https://raw.githubusercontent.com/' +
                             'davidroberson3/tic-tac-toe-game/master' +
                             '/images/cat-head-gray.jpg">');
-                } else if (move === 'O') {
-                    currentCell.classList.add(move);
+
+                } else if (moveOfCurrentBoardPosition === 'O') {
+                    currentCell.classList.add('O');
                     currentCell.innerHTML =
                         ('<img class="cat-head" ' +
                             'src="https://raw.githubusercontent.com/' +
                             'davidroberson3/tic-tac-toe-game/master' +
                             '/images/cat-head-orange.jpg">');
                 }
+
             }
         }
+
     };
 
 
