@@ -55,18 +55,38 @@ var tictactoe = (function () {
 
         // if someone won, this displays the winner
         if (winner === 'X') {
-            document.getElementById('win-status').innerHTML =
-                ('<img class="cat-win" ' +
-                    'src="https://raw.githubusercontent.com/davidroberson3/' +
-                    'tic-tac-toe-game/master/images/cat-head-gray.jpg"> wins!');
+
+            // this clears the 'x player's turn' message
+            document.getElementById('win-status').innerHTML = '';
+
+            var catHeadWin = document.createElement('div');
+            catHeadWin.innerHTML = ('<img class="cat-win" ' +
+                'src="https://raw.githubusercontent.com/davidroberson3/' +
+                'tic-tac-toe-game/master/images/cat-head-gray.jpg"> wins!');
+            document.getElementById('win-status').appendChild(catHeadWin);
+
+//            var winStatusText = document.createElement('div');
+//            winStatusText.textContent = ' wins!';
+//            document.getElementById('win-status').appendChild(winStatusText);
+
             renderWinCircles(winCheckResult);
             return;
 
         } else if (winner === 'O') {
-            document.getElementById('win-status').innerHTML =
-                ('<img class="cat-win" ' +
-                    'src="https://raw.githubusercontent.com/davidroberson3/' +
-                    'tic-tac-toe-game/master/images/cat-head-orange.jpg"> wins!');
+
+            // this clears the 'x player's turn' message
+            document.getElementById('win-status').innerHTML = '';
+
+            var catHeadWin = document.createElement('div');
+            catHeadWin.innerHTML = ('<img class="cat-win" ' +
+                'src="https://raw.githubusercontent.com/davidroberson3/' +
+                'tic-tac-toe-game/master/images/cat-head-orange.jpg"> wins!');
+            document.getElementById('win-status').appendChild(catHeadWin);
+
+//            var winStatusText = document.createElement('div');
+//            winStatusText.textContent = ' wins!';
+//            document.getElementById('win-status').appendChild(winStatusText);
+
             renderWinCircles(winCheckResult);
             return;
         }
@@ -85,14 +105,18 @@ var tictactoe = (function () {
         }
 
         if (isBoardFull) {
-            document.getElementById('win-status').innerHTML =
+            document.getElementById('win-status').textContent = 'Cat\'s game!';
+
+            var catHeadsDrawState = document.createElement('div');
+            catHeadsDrawState.innerHTML =
                 ('<img class="cat-win" ' +
                     'src="https://raw.githubusercontent.com/davidroberson3/' +
-                    'tic-tac-toe-game/master/images/cat-head-gray.jpg">' +
-                    ' Cat\'s game! ' +
+                    'tic-tac-toe-game/master/images/cat-head-gray.jpg"> ' +
                     '<img class="cat-win" ' +
                     'src="https://raw.githubusercontent.com/davidroberson3/' +
                     'tic-tac-toe-game/master/images/cat-head-orange.jpg">');
+
+            document.getElementById('win-status').appendChild(catHeadsDrawState);
         }
 
     };
