@@ -22,6 +22,11 @@ var tictactoe = (function () {
     // Function that handles clicks, to place moves on the board
     var moveHandler = function (chosenCell) {
 
+        // need to check for winner right now, because
+        // isCellAvailable depends on it
+        var winCheckResult = checkWinCondition();
+        var winner = winCheckResult[0];
+
         // if the clicked cell is available,
         // then this updates the game board with current move
         var cellCoords = this.id.replace('cell', '').split('-');
@@ -43,10 +48,12 @@ var tictactoe = (function () {
             renderGame();
         }
 
-        // if someone won, this displays the winner
-        var winCheckResult = checkWinCondition();
-        var winner = winCheckResult[0];
+        // also need to check for winner right now,
+        // to see if the current move has resulted in a win
+        winCheckResult = checkWinCondition();
+        winner = winCheckResult[0];
 
+        // if someone won, this displays the winner
         if (winner === 'X') {
             document.getElementById('win-status').innerHTML =
                 ('<img class="cat-win" ' +
@@ -239,9 +246,6 @@ var tictactoe = (function () {
     ///////////////////////////////////////////////////////////////////////////
     // Function that draws circles over top of the winning moves
     var renderWinCircles = function (winCheckResult) {
-
-        // 'X', 'O'
-        var winPlayer = winCheckResult[0];
 
         // ['row0','row1','row2',
         //  'col0','col1','col2',
